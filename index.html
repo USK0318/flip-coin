@@ -1,4 +1,12 @@
-body {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Flip</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap">
+    <style>
+        body {
     font-family: 'Nunito', sans-serif;
     display: flex;
     justify-content: center;
@@ -88,3 +96,30 @@ button:hover {
     50% { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
     100% { transform: rotateY(360deg); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
 }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flip a Coin</h1>
+        <div id="result">
+            <div class="coin" id="coin">?</div>
+        </div>
+        <button id="flipButton"><b>Flip Coin</b></button>
+    </div>
+    <script >
+        document.getElementById('flipButton').addEventListener('click', function() {
+            const coin = document.getElementById('coin');
+            coin.textContent = '?'; // Reset to question mark
+            coin.style.animation = 'none'; // Reset animation
+            void coin.offsetWidth; // Trigger reflow
+            coin.style.animation = 'flip 2s forwards'; // Increase animation duration
+
+            setTimeout(function() {
+                const result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+                coin.textContent = result;
+            }, 2000); // Match the duration of the animation
+        });
+            </script>
+</body>
+</html>
